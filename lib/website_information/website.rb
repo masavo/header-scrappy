@@ -1,4 +1,5 @@
 require 'nokogiri'
+require 'open-uri'
 
 module WebsiteInformation
   class Website
@@ -14,7 +15,7 @@ module WebsiteInformation
     private
 
     def scrape(url)
-      doc = ::Nokogiri::HTML(open(url))
+      doc = ::Nokogiri::HTML(URI.open(url))
       @params.title = doc.title
       @params.meta.description = doc.css('//meta[name$="description"]/@content').to_s
       @params.meta.keyword = doc.css('//meta[name$="keyword"]/@content')
