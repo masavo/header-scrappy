@@ -32,6 +32,7 @@ module WebsiteInformation
 
     def favicon(doc, url)
       favicon = doc.css('//link[@rel="shortcut icon"]/@href').to_s
+      favicon = doc.css('//link[@rel="icon"]/@href').to_s          if favicon.empty?
       favicon = doc.css('//link[@type="image/x-icon"]/@href').to_s if favicon.empty?
       favicon = '/favicon.ico' if favicon.empty?
 
